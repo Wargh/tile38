@@ -102,6 +102,7 @@ type Endpoint struct {
 		CACertFile string
 		CertFile   string
 		KeyFile    string
+		SSL        bool
 		User       string
 		Pass       string
 	}
@@ -299,6 +300,8 @@ func parseEndpoint(s string) (Endpoint, error) {
 	case strings.HasPrefix(s, "amqps:"):
 		endpoint.Protocol = AMQP
 	case strings.HasPrefix(s, "mqtt:"):
+		endpoint.Protocol = MQTT
+	case strings.HasPrefix(s, "mqtts:"):
 		endpoint.Protocol = MQTT
 	case strings.HasPrefix(s, "pubsub:"):
 		endpoint.Protocol = PubSub
@@ -564,6 +567,10 @@ func parseEndpoint(s string) (Endpoint, error) {
 					endpoint.MQTT.Pass = val[0]
 				}
 			}
+		}
+
+		if strings.HasPrefix(endpoint.Original, "mqtts:") {
+			endpoint.MQTT.SSL = true
 		}
 
 		// Throw error if we not provide any queue name
