@@ -204,8 +204,8 @@ func (s *Server) goLive(
 			var msgs []string
 			func() {
 				// safely lock the fence because we are outside the main loop
-				s.mu.RLock()
-				defer s.mu.RUnlock()
+				s.mu.Lock()
+				defer s.mu.Unlock()
 				msgs = FenceMatch("", sw, fence, nil, details)
 			}()
 			for _, msg := range msgs {
