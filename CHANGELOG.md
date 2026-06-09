@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.38.0] = 2026-06-08
+### Added 
+- #806: Support multiple Kafka broker addresses in endpoint URL (@badaverse)
+- #799: Add RX option for inline object response in SET and FSET (@XanderD99)
+- #811: MQTT add SSL and user (@bqstony)
+
+### Fixed
+- 194107f: Apply WHERE clause check for cross detection in geofence hooks (@majiayu000)
+- b3902cf: Distinguish between hooks and channels in RENAME error message (@majiayu000)
+- e16c198: Fix lock (@rohanri)
+- #812: Added amqp channel closure on error and connection expiry on closure (@FranklinLimWest)
+
+### Updated
+- c279114: Go 1.26
+- Update various Go dependencies
+
 ## [1.37.0] = 2026-01-06
 ### Added
 - #791: Add regexp to where expressions using '=~' (@TomDeVito)
